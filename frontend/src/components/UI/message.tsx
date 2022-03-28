@@ -7,7 +7,7 @@ interface Props extends IMessage {
 export default function Message({ username, content, isMe, className }: Props) {
   return (
     <div
-      className={`${className} shadow-lg rounded p-2 ${
+      className={`${className} break-all shadow-lg rounded p-2 ${
         isMe
           ? "bg-violet-600 shadow-violet-600/50"
           : "bg-gray-600 shadow-gray-600/50"
