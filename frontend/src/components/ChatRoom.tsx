@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Message from "./UI/message";
 import useMessage from "../customHooks/useMessage";
 import ws from "../chat";
