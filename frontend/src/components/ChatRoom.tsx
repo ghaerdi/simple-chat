@@ -23,28 +23,45 @@ export default function ChatRoom({ username }: Props) {
     divRef.current?.scrollIntoView();
   }, [messages]);
 
-
   useEffect(() => {
     divRef.current?.scrollIntoView();
   }, [message]);
 
   return (
-    <>
-      <div className="flex flex-col h-[calc(100%-50px)] overflow-auto gap-1 p-2">
-        {messages.map(({ username, content, isMe }, i) => (
-          <Message
-            className={isMe ? "self-end" : "self-start"}
-            key={i}
-            isMe={isMe}
-            username={username}
-            content={content}
+    <div className="h-[inherit] grid grid-rows-[50px_auto_50px] ">
+      <header className="flex items-center justify-between h-14 w-screen bg-gray-900/75 backdrop-blur-md px-5">
+        <h1 className="text-md uppercase tracking-wider">Welcome {username}</h1>
+        <a
+          href="https://github.com/ghaerdi/simple-chat"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="/src/icons/github.svg"
+            height={25}
+            width={25}
+            alt="github icon"
           />
-        ))}
-        <div ref={divRef} />
+        </a>
+      </header>
+
+      <div className="overflow-y-auto">
+        <div className="min-h-full h-auto flex flex-col justify-end gap-1 p-2">
+          {messages.map(({ username, content, isMe }, i) => (
+            <Message
+              className={`${isMe ? "self-end" : "self-start"}`}
+              key={i}
+              isMe={isMe}
+              username={username}
+              content={content}
+            />
+          ))}
+          <div ref={divRef} />
+        </div>
       </div>
 
       <form
-        className="h-[50px] flex gap-3 justify-around absolute bottom-0 w-full bg-gray-800 p-1"
+        className="flex gap-3 justify-around w-full bg-gray-800 p-1"
         onSubmit={sendMessage}
       >
         <input
@@ -62,6 +79,6 @@ export default function ChatRoom({ username }: Props) {
           Send
         </button>
       </form>
-    </>
+    </div>
   );
 }
