@@ -15,7 +15,7 @@ export default function ChatRoom({ username }: Props) {
 
   useEffect(() => {
     ws.onmessage = async (event) => {
-      const content = await event.data.text();
+      const content = event.data as string;
       const msg = { isMe: false, ...JSON.parse(content) };
       setMessages([...messages, msg]);
     };
